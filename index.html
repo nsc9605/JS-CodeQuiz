@@ -1,50 +1,90 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Added bootstrap for style -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/journal/bootstrap.min.css" integrity="sha384-QDSPDoVOoSWz2ypaRUidLmLYl4RyoBWI44iA5agn6jHegBxZkNqgm2eHb6yZ5bYs" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js" integrity="sha256-lPE3wjN2a7ABWHbGz7+MKBJaykyzqCbU96BJWjio86U=" crossorigin="anonymous"></script>
+    <title>JavaScript Coding Quiz</title>
+</head>
+<body>
     
-    <title>Javascript Code Quiz</title>
-  </head>
-  <body>
-    <!-- Start header -->
-    <nav class="navbar navbar-expand-md fixed-top">
-      <div class="container-fluid">
-            <div id="highscore" class="nav-item nav-link"> View High Scores</div>
-            <h1 id="navbar-title">Timed Quiz Game</h1>
-            <table id=timers style="visibility: hidden;">
-              <tr>
-                <td> Time left in Game: </td>
-                <td> <span id="gameTimer" class="nav-item"></span> </td>
-              </tr>
-               <tr>
-                <td>Time left for Question:</td>
-                <td> <span id="quesTimer" class="nav-item"></span> </td>
-              </tr>
-            </table>
+    <!-- the mainWindow div is the main div that will display/hide each "window"-->
+    <div class="mainWindow">
+        <!-- Nav bar includes the link to see the running timer and high scores-->
+        <nav class="ribbon">
+            <div><a id="viewHighScores" href="#">View All High Scores</a></div>
+            <div id="timer">Timer: <span id="timer" >1:00</span></p>
+        </nav>
+
+        <!-- the pre-quiz window alerts the user the rules of the game -->
+        <div class="preQuiz messageToUser hide">
+            <h3 class="messageToUser">JavaScript Coding Quiz</h3>
+            <p class="messageToUser">Try your best to answer the following javascript related questions to test the skills you've learned this far within the time limit. When you answer a question incorrectly, <span id='ten'>10</span> seconds will be taken off the allotted time!</p>
+            <button id="startButton" class="button">Start Quiz</button>
         </div>
-      </div>
-    </nav>
-    <!-- end header -->
-    <!-- start Content -->
-    <div class="container-fluid">
-      <!-- ADD element for the intro instructions and quiz -->
-      <section id="details"> </section>
-    </div>    
-  <!-- End Content -->
 
-  <!-- Start Footer -->
-    <nav class="navbar fixed-bottom footer">
-        <div class="footer-text">&copy; 2020 Nicole Catapano</div>
-    </nav>
-  <!-- End Footer -->
+        <!-- this is the window warns the user to begin game and start timer-->
+        <div class="confirmPlay messageToUser hide ">
+            <h3 class='messageToUser' >When you are ready to begin, click the "Begin Game" button and the clock will start counting down.</h3>
+            <button class="button">Begin Game!</button>
+        </div>
 
-    <!-- Javascript file containing questions for quiz -->
-    <script src='./questions.js'></script>
-    <!-- Javascript file -->
-    <script src='./script.js'></script>
-  </body>
+        <!-- this opens the quiz questions window -->
+        <div class="quizQuestions hide ">
+            <div class="messageToUser">
+                    <h3 id="quizQuestionsTitle">sample</h3>
+            </div>
+            <div class="choices messageToUser ">
+                <div><button class="button">1. <span id='but1'>sample</span> </button></div>
+                <div><button class="button">2. <span id='but2'>sample</span> </button></div>
+                <div><button class="button">3. <span id='but3'>sample</span></button></div>
+                <div><button class="button">4. <span id='but4'>sample</span></button></div>
+            </div>
+            <!-- this prompts which message to pop up if answered wrong or right -->
+            <div class="result">
+                <div class="rightAnswer hide">Correct!</div>
+                <div class="wrongAnswer hide">Wrong! 10 Second Penalty</div>
+            </div>
+        </div>
+
+
+        <!-- Final results window -->
+        <div class="quizResults hide">
+                <h3 class="messageToUser">Congratulations your done!</h3>
+                <p class="messageToUser">Your final score is <span id="finalScore">sample</span>%</p>
+                <div class="userName">
+                    <label id="name" for="name"> Enter your Name: </label>
+                    <input id="playerName" type="text">
+                    <button id="submit" class="button">Submit</button>
+                </div>
+        </div>
+
+
+        <!-- This is where high scores will be displayed and local storage high scores -->
+    <div class="highScores hide">
+        <h3 class="messageToUser">Recent High Scores:</h3>
+        <div id="scores">
+        </div>
+        <!-- Buttons to either restart the game or clear high scores -->
+        <div>
+            <button id="restartButton" class="button">Restart</button>
+            <button id="clearHighScores" class="button">Clear High Scores</button>
+        </div>
+    </div>
+
+        
+</div>
+
+<!-- This is where the footer goes -->
+<div id="wrapper">
+    <div class="footer">
+        <p id=footer-text>&copy; 2020 Nicole Catapano</p> 
+    </div>
+<!-- This is where javascript files go and decoration -->
+</div>
+    <script src = "questions.js"></script>
+    <script src="script.js"></script>
+</body>
 </html>
