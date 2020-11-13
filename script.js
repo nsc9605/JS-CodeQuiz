@@ -1,3 +1,4 @@
+// Define elements
 const startButton = document.getElementById('start-btn');
 const nextButton = document.getElementById('next-btn');
 const questionContainerElement = document.getElementById('question-container');
@@ -6,6 +7,9 @@ const answerButtonsElement = document.getElementById('answer-buttons');
 const timeCount = document.querySelector('.timer');
 const timeLine = document.querySelector('.header .time_line');
 const timer = document.getElementById('timer');
+// const progress = document.getElementById('progress');
+const scoreContainer = document.getElementById('score-container');
+const rulesContainer = document.getElementById('rules-container');
 
 const questions = [
   {
@@ -90,20 +94,22 @@ function startTimer(){
       }
   }
 }
-// // Or this way?
-// function startTimerLine(time){
-//   counterLine = setInterval(timer, 29);
-//   function timer(){
-//       time += 1;
-//       timeLine.style.width = time + 'px';
-//       // if(time < );
-//   }
-// }
+
+
+
+// HIDE INSTRUCTIONS CONTAINER WHEN START BUTTON IS CLICKED
+
+// let startButton = document.querySelector('start-btn');
+// let rulesContainer = document.querySelector('rules');
+// if (startButton.clicked) rulesContainer.style.display = 'hide';
+// else rulesContainer.style.display = null; 
 
 startButton.addEventListener('click', startGame);
 nextButton.addEventListener('click', () => {
   currentQuestionIndex++;
   setNextQuestion();
+  
+
 })
 
 
@@ -115,6 +121,8 @@ function startGame() {
   questionContainerElement.classList.remove('hide');
   startTimer()
   setNextQuestion();
+    // if (startButton.clicked) rulesContainer.add = 'none';
+    // else rulesContainer.button.style.display = null;
 }
 
 function setNextQuestion() {
@@ -136,6 +144,8 @@ function showQuestion(question) {
   })
 }
 
+// ADD LOCAL STORAGE TO HOLD SCORES
+
 function resetState() {
   clearStatusClass(document.body);
   nextButton.classList.add('hide');
@@ -143,6 +153,7 @@ function resetState() {
     answerButtonsElement.removeChild(answerButtonsElement.firstChild);
   }
 }
+
 
 function selectAnswer(e) {
   const selectedButton = e.target;
@@ -154,7 +165,7 @@ function selectAnswer(e) {
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     nextButton.classList.remove('hide');
   } else {
-    startButton.innerText = 'Restart';
+    startButton.innerText = 'Restart'; // bring used to container with high scores and option to restart
     startButton.classList.remove('hide');
   }
 }
@@ -177,6 +188,12 @@ function setup() {
   noc
 }
 
+// TO DO: add a function for high scores: a place to write initials, store locally as well as reset after last question
+
+
+
+
+
 
 // const timerEl = document.getElementById('timer');
 
@@ -192,3 +209,13 @@ function setup() {
 //   time--;
 // }
 
+
+// // Or this way?
+// function startTimerLine(time){
+//   counterLine = setInterval(timer, 29);
+//   function timer(){
+//       time += 1;
+//       timeLine.style.width = time + 'px';
+//       // if(time < );
+//   }
+// }

@@ -3,17 +3,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=News+Cycle:wght@400;700&display=swap" rel="stylesheet">
     <!-- Add in CSS style sheets -->
     <link rel="stylesheet" href="style.css">
     <title>JavaScript Code Quiz</title>
 </head>
 
 <body>
-    <h1>JavaScript Code Quiz</h1>      
-    <!-- Container which will hold the box with questions and answer buttons -->
+      <!-- score container  -->
+    <div id="score-container row">
+        <p class="high-scores">High Scores: </p>
+    </div> 
+    <div class="rules-container">
+      <h1>JavaScript Code Quiz</h1>
+      <br>
+      <h2> Try your best to answer the following JavaScript related questions to test the skills you've learned this far within the time limit.</h2>
+        <br>
+        <p>
+          When you are ready to begin, click the "Start" button and the clock will start counting down from 120 seconds.
+        </p>     
+    </div>
+      <!-- Container which will hold the box with questions and answer buttons -->
     <div class="container">
       <p class="timer">Time: </p>
-      <p class="high-scores">High Scores: </p>
+      
       <div id="question-container" class="hide">
         <!-- This is where each question will go with its possible answers  -->
         <div id="question">Question</div>
@@ -32,8 +46,8 @@
         <button id="start-btn" class="start-btn btn">Start</button>
         <button id="next-btn" class="next-btn btn hide">Next</button>
       </div>
-    
     </div>
+   
    <!-- This is where the javascript page will be -->
     <script src='script.js'></script>
 </body>
