@@ -9,65 +9,8 @@ const timeLine = document.querySelector('.header .time_line');
 const timer = document.getElementById('timer');
 // const progress = document.getElementById('progress');
 const scoreContainer = document.getElementById('score-container');
-const rulesContainer = document.getElementById('rules-container');
-
-const questions = [
-  {
-    question: 'Commonly used data types DO NOT include:',
-    answers: [
-      { text: 'Strings', correct: false },
-      { text: 'Booleans', correct: false },
-      { text: 'Alerts', correct: true },
-      { text: 'Numbers', correct: false }
-    ]
-  },
-  { 
-    question: 'A very useful tool used during development and debugging for printing content to the debugger is:', 
-    answers: [
-      { text: 'function var()', correct: false},
-      { text: 'console.log()', correct: true },
-      { text: 'setInterval()', correct: false },
-      { text: 'var sum = 0', correct: false },
-    ]
-  },
-  {
-    question: 'String values must be enclosed withing _______.',
-    answers: [
-      { text: 'Single Quotes ""', correct: true },
-      { text: 'Curly Brackets {}', correct: false },
-      { text: 'Parenthesis ()', correct: false },
-      { text: 'Square Brackets []', correct: false }
-    ]
-  },
-  {
-    question: 'The condition in an if / else statement is enclosed within ________.',
-    answers: [
-      { text: '{ }', correct: false },
-      { text: '( )', correct: true },
-      { text: '" "', correct: false },
-      { text: '< >', correct: false }
-    ]
-  },
-  {
-    question: 'What is the most frequently used loop in Javascript?',
-    answers: [
-      { text: 'While Loop', correct: false },
-      { text: 'For Loop', correct: true },
-      { text: 'Do-While Loop', correct: false },
-      { text: 'For-In Loop', correct: false }
-    ]
-  },
-  { 
-    question: 'How does a FOR loop start?', 
-    answers: [
-      { text: 'for i = 1 to 5', correct: false },
-      { text: 'for (i <= 5; i++)', correct: false },
-      { text: 'for (i = 0; i <= 5)', correct: false },
-      { text: 'for (i = 0; i < 5; i++)', correct: true }
-      
-    ]
-  }
-]
+const rulesContainer = document.querySelector('.rules-container');
+const scoreCounter = document.getElementById('count');
 
 let currentQuestion = {};
 let acceptingAnswers = true;
@@ -77,6 +20,7 @@ let availableQuestions = [];
 let shuffledQuestions, currentQuestionIndex;
 const startingMinutes = 2;
 let time = startingMinutes * 60;
+let count = 0;
 
 // Which way to set timer for countdown???
 function startTimer(){
@@ -116,14 +60,14 @@ nextButton.addEventListener('click', () => {
 
 function startGame() {
   startButton.classList.add('hide');
+  rulesContainer.classList.add('hide');
   shuffledQuestions = questions.sort(() => Math.random() - .5);
   currentQuestionIndex = 0;
   questionContainerElement.classList.remove('hide');
-  startTimer()
+  startTimer();
   setNextQuestion();
-    // if (startButton.clicked) rulesContainer.add = 'none';
-    // else rulesContainer.button.style.display = null;
-}
+  renderCounter();
+};
 
 function setNextQuestion() {
   resetState();
@@ -138,6 +82,7 @@ function showQuestion(question) {
     button.classList.add('btn');
     if (answer.correct) {
       button.dataset.correct = answer.correct;
+      
     }
     button.addEventListener('click', selectAnswer);
     answerButtonsElement.appendChild(button);
@@ -170,14 +115,32 @@ function selectAnswer(e) {
   }
 }
 
+function renderCounter(){
+  if(count <= time){
+    scoreCounter.textContent = count;
+  count++;
+  }else{
+  count = 0;
+  }
+}
+
+
 function setStatusClass(element, correct) {
   clearStatusClass(element);
   if (correct) {
+    
+    // count++;
     element.classList.add('correct');
+    count++;
+   
   } else {
+    
     element.classList.add('wrong');
+
   }
 }
+
+
 
 function clearStatusClass(element) {
   element.classList.remove('correct');
