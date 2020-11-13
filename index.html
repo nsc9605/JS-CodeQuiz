@@ -3,33 +3,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+    <!-- Add in CSS style sheets -->
     <link rel="stylesheet" href="style.css">
     <title>JavaScript Code Quiz</title>
-  </head>
-  <body>
+</head>
+
+<body>
+    <h1>JavaScript Code Quiz</h1>      
+    <!-- Container which will hold the box with questions and answer buttons -->
     <div class="container">
-      <div id="countdown">
-        <p class="countdown-container">2:00</p>
-      </div>
+      <p class="timer">Time: </p>
+      <p class="high-scores">High Scores: </p>
       <div id="question-container" class="hide">
+        <!-- This is where each question will go with its possible answers  -->
         <div id="question">Question</div>
+        <!-- This is where possible answers will be provided to choose from in grid button form -->
         <div id="answer-buttons" class="btn-grid">
           <button class="btn">Answer 1</button>
           <button class="btn">Answer 2</button>
           <button class="btn">Answer 3</button>
           <button class="btn">Answer 4</button>
         </div>
+
       </div>
-    <div class="controls">
-      <button id="start-btn" class="start-btn btn">Start</button>
-      <button id="next-btn" class="next-btn btn hide">Next</button>
+    
+      <!-- Separate div for the button controls as in next, start, etc. -->
+      <div class="controls">
+        <button id="start-btn" class="start-btn btn">Start</button>
+        <button id="next-btn" class="next-btn btn hide">Next</button>
+      </div>
+    
     </div>
-    <div id="timer">
-      <p class="timer">2:00</p>
-    </div>
-  </div>
-   
+   <!-- This is where the javascript page will be -->
     <script src='script.js'></script>
-  </body>
+</body>
 </html>
