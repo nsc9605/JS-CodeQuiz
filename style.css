@@ -116,15 +116,16 @@ p {
 }
 
 .score-container {
-  width: 300px;
-  max-width: 50%;
+  width: 700px;
+  max-width: 80%;
   background-color: lightgrey;
   border-radius: 5px;
-  padding: 12px;
+  padding: 20px;
   box-shadow: 0 0 10px 2px;
   font-size: 30px;
-  justify-content: start;
-  align-items: left;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
   
 }
 
