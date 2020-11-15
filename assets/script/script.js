@@ -122,8 +122,8 @@ function endGame() {
       timer = 00
       nextButton.classList.add("hide");
       showHighScores.classList.remove("hide");
-      usernameEl.classList.add("hide");
-      scoreEl.classList.add("hide");
+      usernameEl.classList.remove("hide");
+      scoreEl.classList.remove("hide");
 } 
   // else {
   highScoresButton.classList.add("click", button);
