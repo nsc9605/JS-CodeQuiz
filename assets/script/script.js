@@ -6,16 +6,17 @@ const questionElement = document.getElementById("question");
 const answerButtonsElement = document.getElementById("answer-buttons");
 const timeCount = document.querySelector(".timer");
 const timeLine = document.querySelector(".header .time_line");
-const timer = document.getElementById("timer");
-// const progress = document.getElementById('progress');
 const scoreContainer = document.getElementById("score-container");
 const rulesContainer = document.querySelector(".rules-container");
 const scoreCounter = document.getElementById("count");
 const showHighScores = document.getElementById("highscores-btn");
+const usernameEl = document.getElementById("username");
+const scoreEl = document.getElementById("score");
+
 
 let currentQuestion = {};
 let acceptingAnswers = true;
-let score = 0;
+let score = [];
 let questionCounter = 0;
 let availableQuestions = [];
 let shuffledQuestions, currentQuestionIndex;
@@ -24,7 +25,7 @@ let time = startingMinutes * 60;
 let count = 0;
 let timeLeft = [];
 
-// Which way to set timer for countdown???
+// START TIMER FUNCTION
 function startTimer() {
   counter = setInterval(timer, 1000);
   function timer() {
@@ -37,14 +38,11 @@ function startTimer() {
     if (time < 0) {
       clearInterval(counter);
       timeCount.textContent = "00";
+      endGame
     }
   }
 }
 
-// HIDE INSTRUCTIONS CONTAINER WHEN START BUTTON IS CLICKED
-
-// let startButton = document.querySelector('start-btn');
-// let rulesContainer = document.querySelector('rules');
 
 // There are 3 Event Listeners
 startButton.addEventListener("click", startGame);
@@ -52,8 +50,7 @@ nextButton.addEventListener("click", () => {
   currentQuestionIndex++;
   setNextQuestion();
 });
-highScoresButton.addEventListener('click', showHighScores);
-
+showHighScores.addEventListener("click", highScoresButton);
 
 function startGame() {
   startButton.classList.add("hide");
@@ -63,7 +60,6 @@ function startGame() {
   questionContainerElement.classList.remove("hide");
   startTimer();
   setNextQuestion();
-  // renderCounter();
 }
 
 function setNextQuestion() {
@@ -82,10 +78,12 @@ function showQuestion(question) {
     }
     button.addEventListener("click", selectAnswer);
     answerButtonsElement.appendChild(button);
-  });
-}
 
-// ADD LOCAL STORAGE TO HOLD SCORES
+  });
+
+    timeLeft -= 10;
+  }
+
 
 function resetState() {
   clearStatusClass(document.body);
@@ -100,7 +98,10 @@ function selectAnswer(e) {
   const correct = selectedButton.dataset.correct;
   if (correct === "true") {
     count++;
+  } else {
+    timeLeft -= 10;
   }
+
   setStatusClass(document.body, correct);
   Array.from(answerButtonsElement.children).forEach((button) => {
     setStatusClass(button, button.dataset.correct);
@@ -109,45 +110,38 @@ function selectAnswer(e) {
     nextButton.classList.remove("hide");
   } else {
     endGame();
-    // startButton.innerText = 'Restart'; // bring used to container with high scores and option to restart
-    startButton.classList.remove("hide");
+    startButton.innerText = 'High Scores';
+    showHighScores.classList.remove("hide");
+ 
+
   }
 }
 
 function endGame() {
-  hideQuestionsContainer(document.body);
-  nextButton.classList.add("hide");
-}
+  if (currentQuestion.length < timeLeft)
+      timer = 00
+      nextButton.classList.add("hide");
+      showHighScores.classList.remove("hide");
+      usernameEl.classList.add("hide");
+      scoreEl.classList.add("hide");
+} 
+  // else {
+  highScoresButton.classList.add("click", button);
+    usernameEl.innerText = "Username:";
+    scoresEl.innerText = "Scores:";
 
-// // checkAnswer(event) {
-//   console.log(questions[currentQuestion].correctAnswer===event.target.id);
-//   if (questions[currentQuestion].correctAnswer===event.target.id){
-//     currentQuestion++;
-//     if (currentQuestion < questions.length){
-//       displayQuestion()
-//     }
-//     else{
-//       showHighScores();
-//     }
-//   }
+  
 
 
-[{
-  initials: "DJK",
-  score: 5
-}]
-
-function showHighScores(){}
-
-// function renderCounter(){
-//   if(count <= time){
-
-//   count++;
-//   } else {
-//   count = 0;
-
-//   }
-// }
+checkAnswer(event) ;
+  console.log(questions[currentQuestion].correctAnswer===event.target.id);
+  if (questions[currentQuestion].correctAnswer===event.target.id){
+    currentQuestion++;
+    if (currentQuestion < questions.length){
+      displayQuestion()
+    }
+   
+    }
 
 function setStatusClass(element, correct) {
   clearStatusClass(element);
@@ -158,15 +152,14 @@ function setStatusClass(element, correct) {
     scoreCounter.textContent = count;
   } else {
     element.classList.add("wrong");
-    seconds = seconds - 10;
-  }
-  if (currentQuestion < questions.length) {
-    displayQuestion();
-  }
-    else {
-      timeLeft -= 10
+    timeLeft -= 10;
     }
   }
+  // if (currentQuestion < questions.length) {
+  //   displayQuestion();
+  // } else {
+  //   timeLeft -= 10;
+  // }
 
 
 function clearStatusClass(element) {
@@ -174,32 +167,20 @@ function clearStatusClass(element) {
   element.classList.remove("wrong");
 }
 
-function setup() {
-  noc;
-}
+// function showHighScores() {
+//   console.log(timeLeft)
+  // Create/Show Element for user input
+  // gather information from input
+  // Make a variable that we can use in localStorage 
+  // THIS IS FOR AN EXAMPLE AND DOES NOT NECESSARILY WORK
+  var highScore = {
+      username: document.innerText("Username"),
+      score: document.innerText("score"),
+  }
+  localStorage.setItem(highScore.username, highScore.score)
+  
+
+
+
 
 // TO DO: add a function for high scores: a place to write initials, store locally as well as reset after last question
-
-// const timerEl = document.getElementById('timer');
-
-// setInterval(updateTimer, 1000);
-
-// function updateTimer() {
-//   const minutes = Math.floor(time / 60);
-//   let seconds = time % 60;
-
-//   seconds = seconds < 2 ? '0' + seconds : seconds;
-
-//   timerEl.innerHTML = $(minutes); $(seconds);
-//   time--;
-// }
-
-// // Or this way?
-// function startTimerLine(time){
-//   counterLine = setInterval(timer, 29);
-//   function timer(){
-//       time += 1;
-//       timeLine.style.width = time + 'px';
-//       // if(time < );
-//   }
-// }

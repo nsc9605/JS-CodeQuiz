@@ -6,13 +6,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=News+Cycle:wght@400;700&display=swap" rel="stylesheet">
     <!-- Add in CSS style sheets -->
-    <link rel="stylesheet" href="style.css">
-    <script src="questions.js"></script>
+    <link rel="stylesheet" href="/assets/style.css">
+    <script src="/assets/script/questions.js"></script>
     <title>JavaScript Code Quiz</title>
 </head>
 
 <body>
-    
     
     <div class="rules-container">
       <h1>JavaScript Code Quiz</h1>
@@ -20,7 +19,7 @@
       <h2> Try your best to answer the following JavaScript related questions to test the skills you've learned this far within the time limit.</h2>
         <br>
         <p>
-          When you are ready to begin, click the "Start" button and the clock will start counting down from 120 seconds.
+          When you are ready to begin, click the "Start" button and the clock will start counting down from 120 seconds. Select the best answer to each question out of the four options provided. The correct answer box will turn green when selected and "Next" button is clicked, the wrong answers will turn red. Keep in mind you will lose 10 seconds for each wrong answer! 
         </p>     
     </div>
       <!-- Container which will hold the box with questions and answer buttons -->
@@ -41,7 +40,9 @@
       </div>
     <!-- highscores container here hide/show -->
     <div id="score-container row">
-      <p class="high-scores">High Scores: </p>
+      <p id="showHighScores"class="high-scores btn hide">High Scores</p>
+          <input type="text" id="username" class="username">Username: </input>
+          <input type="text" id="score" class="score">Score: </input>
   </div> 
       <!-- Separate div for the button controls as in next, start, etc. -->
       <div class="controls">
@@ -52,7 +53,7 @@
     </div>
    
    <!-- This is where the javascript page will be -->
-    <script src='script.js'></script>
+    <script src='assets/script/script.js'></script>
 
 </body>
 </html>
